@@ -3,7 +3,7 @@ import { createHead } from '@vueuse/head';
 import App from './App.vue';
 import router from './router';
 import store from './store';
-import '../node_modules/metro4/build/css/metro.min.css';
+import '../node_modules/metro4/build/css/metro-all.min.css';
 import '../node_modules/metro4/build/js/metro.min.js';
 
 const app = createApp(App);
