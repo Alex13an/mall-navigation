@@ -1,7 +1,11 @@
 <template>
-  <div class="cell-3 bg-red">123</div>
-  <div class="cell-3 bg-red">123</div>
-  <div class="cell-3 bg-red">123</div>
+  <div class="grid">
+    <div class="row">
+      <div class="cell-3 bg-red">123</div>
+      <div class="cell-3 bg-red">123</div>
+      <div class="cell-3 bg-red">123</div>
+    </div>
+  </div>
 </template>
 
 <script>

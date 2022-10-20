@@ -4,14 +4,22 @@
 
 <script>
 import HomePage from './pages/HomePage';
-import Metro from './metro/js/metro-4.4.3';
+import { useHead } from '@vueuse/head';
 
 export default {
+  setup() {
+    useHead({
+      title: 'Mall navigation app',
+      meta: [
+        {
+          property: 'metro4:init',
+          content: 'false',
+        },
+      ],
+    });
+  },
   components: {
     HomePage,
-  },
-  mounted() {
-    Metro.init();
   },
 };
 </script>
