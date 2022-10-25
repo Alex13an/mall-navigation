@@ -10,6 +10,8 @@
   "dependencies": {
     "@vueuse/head": "^0.9.8",
     "core-js": "^3.8.3",
+    "i18next": "^22.0.2",
+    "i18next-vue": "^2.0.0",
     "metro4": "^4.5.1",
     "vue": "^3.2.13",
     "vue-router": "^4.0.3",
