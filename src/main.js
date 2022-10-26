@@ -6,8 +6,7 @@ import store from './store';
 import i18next from 'i18next';
 import I18NextVue from 'i18next-vue';
 import i18n from './i18n';
-import '../node_modules/metro4/build/css/metro-all.min.css';
-import '../node_modules/metro4/build/js/metro.min.js';
+import '../node_modules/metro4/build/css/metro-icons.css';
 
 const app = createApp(App);
 

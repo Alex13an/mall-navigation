@@ -12,12 +12,7 @@ export default {
   setup() {
     useHead({
       title: 'Mall navigation app',
-      meta: [
-        {
-          property: 'metro4:init',
-          content: 'false',
-        },
-      ],
+      meta: [],
     });
   },
   components: {
@@ -33,6 +28,15 @@ export default {
   box-sizing: border-box;
 }
 
+body {
+  text-rendering: optimizeSpeed;
+  font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, Ubuntu, 'Helvetica Neue', sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  font-style: normal;
+  user-select: none;
+}
+
 :root {
   --columns: 12;
   --content-width: 90vw;
@@ -42,7 +46,7 @@ export default {
 
 .content {
   width: 100%;
-  background: #004e9e;
+  background: #2b5797;
   height: 100vh;
   max-height: 100vh;
 }

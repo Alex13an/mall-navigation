@@ -1,30 +1,34 @@
 <template>
   <Carousel :settings="settings">
-    <Slide v-for="slide in 12" :key="slide">
-      <div class="apps-carousel">
-        <div v-for="item in 2" class="apps-carousel__item" :key="item">appItem</div>
-      </div>
+    <Slide v-for="category in categories" :key="category.name">
+      <CarouselItem :category="category" />
     </Slide>
   </Carousel>
 </template>
 
 <script>
 import 'vue3-carousel/dist/carousel.css';
+import { mapState } from 'vuex';
 import { Carousel, Slide } from 'vue3-carousel';
+import CarouselItem from './CarouselItem';
 
 export default {
   components: {
     Carousel,
     Slide,
+    CarouselItem,
   },
   data() {
     return {
       settings: {
-        itemsToShow: 4,
+        itemsToShow: 3.9,
         itemsToScroll: 1,
         snapAlign: 'start',
       },
     };
+  },
+  computed: {
+    ...mapState(['categories']),
   },
 };
 </script>
@@ -36,25 +40,19 @@ export default {
   border: none;
 }
 
-:deep(.carousel__viewport),
 :deep(.carousel__track) {
-  height: 100%;
+  display: grid;
+  grid-template-rows: var(--row-size) var(--row-size);
+  grid-auto-flow: column;
+  grid-gap: var(--gutter);
 }
 
 :deep(.carousel__slide) {
   width: var(--row-size) !important;
-  margin-right: var(--gutter);
 }
 
-.apps-carousel {
+:deep(.carousel__viewport),
+:deep(.carousel__track) {
   height: 100%;
-  width: 100%;
-  display: grid;
-  grid-template-rows: var(--row-size) var(--row-size);
-  grid-gap: var(--gutter);
-
-  &__item {
-    border: 1px solid silver;
-  }
 }
 </style>

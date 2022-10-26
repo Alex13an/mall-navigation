@@ -3,22 +3,26 @@
     <MainHeader />
     <MainAd />
     <div class="map">Map</div>
-    <div class="map-navigation">Navigation</div>
-    <div class="search">Search</div>
+    <MapNavigation />
+    <MainSearch />
     <AppsCarousel />
   </div>
 </template>
 
 <script>
 import MainHeader from '../components/MainHeader';
-import MainAd from '../components/MainAd.vue';
-import AppsCarousel from '../components/AppsCarousel.vue';
+import MainAd from '../components/MainAd';
+import MapNavigation from '../components/MapNavigation';
+import MainSearch from '../components/MainSearch';
+import AppsCarousel from '../components/AppsCarousel';
 
 export default {
   components: {
     MainHeader,
     MainAd,
+    MapNavigation,
     AppsCarousel,
+    MainSearch,
   },
 };
 </script>
@@ -38,20 +42,9 @@ export default {
     'nav nav nav search ad ad ad ad ad ad ad ad'
     'apps apps apps apps ad ad ad ad ad ad ad ad'
     'apps apps apps apps ad ad ad ad ad ad ad ad';
-  & * {
-    border: 1px solid silver;
-  }
 }
 
 .map {
   grid-area: map;
-}
-
-.map-navigation {
-  grid-area: nav;
-}
-
-.search {
-  grid-area: search;
 }
 </style>
