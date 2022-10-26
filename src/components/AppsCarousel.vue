@@ -1,6 +1,6 @@
 <template>
   <Carousel :settings="settings">
-    <Slide v-for="category in categories" :key="category.name">
+    <Slide v-for="category in categories" :key="category.id">
       <CarouselItem :category="category" />
     </Slide>
   </Carousel>

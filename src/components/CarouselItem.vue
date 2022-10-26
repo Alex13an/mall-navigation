@@ -2,7 +2,7 @@
   <div class="carousel-item" :style="styleObject">
     <img class="carousel-item__img" :src="getIcon(category.icon)" alt="category" draggable="false" />
     <div class="carousel-item__tooltip">
-      {{ category.name }}
+      {{ $t(`categories.${category.id}`) }}
     </div>
   </div>
 </template>
