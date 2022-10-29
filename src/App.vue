@@ -1,11 +1,10 @@
 <template>
   <div class="content">
-    <HomePage />
+    <router-view />
   </div>
 </template>
 
 <script>
-import HomePage from './pages/HomePage.vue';
 import { useHead } from '@vueuse/head';
 
 export default {
@@ -14,9 +13,6 @@ export default {
       title: 'Mall navigation app',
       meta: [],
     });
-  },
-  components: {
-    HomePage,
   },
 };
 </script>
@@ -35,6 +31,17 @@ body {
   font-weight: 400;
   font-style: normal;
   user-select: none;
+}
+
+img,
+a {
+  text-decoration: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  user-drag: none;
+  -webkit-user-drag: none;
 }
 
 :root {

@@ -1,5 +1,5 @@
 export default {
-  mainTitle: 'ТРЦ Твое имя',
+  mainTitle: 'ТРЦ Торговый Центр',
   hello: 'Привет!',
   mapNavigation: {
     plus: 'Увеличить карту',
@@ -24,4 +24,5 @@ export default {
     jewellery: 'Бижутерия',
     books: 'Книги',
   },
+  goBack: 'Назад',
 };

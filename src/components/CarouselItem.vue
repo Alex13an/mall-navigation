@@ -1,10 +1,10 @@
 <template>
-  <div class="carousel-item" :style="styleObject">
+  <router-link :to="{ name: 'search', params: { category: category.id } }" class="carousel-item" :style="styleObject">
     <img class="carousel-item__img" :src="getIcon(category.icon)" alt="category" draggable="false" />
     <div class="carousel-item__tooltip">
       {{ $t(`categories.${category.id}`) }}
     </div>
-  </div>
+  </router-link>
 </template>
 
 <script>
@@ -38,6 +38,7 @@ export default {
   align-items: center;
   flex-direction: column;
   position: relative;
+  -webkit-user-drag: none;
   &::before {
     content: '';
     position: absolute;

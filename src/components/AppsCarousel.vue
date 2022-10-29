@@ -1,34 +1,29 @@
 <template>
-  <Carousel :settings="settings">
-    <Slide v-for="category in categories" :key="category.id">
-      <CarouselItem :category="category" />
-    </Slide>
-  </Carousel>
+  <div class="carousel">
+    <div class="carousel__track">
+      <div class="carousel__slide" v-for="category in activeCategories" :key="category.id">
+        <CarouselItem :category="category" />
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
 import 'vue3-carousel/dist/carousel.css';
-import { mapState } from 'vuex';
-import { Carousel, Slide } from 'vue3-carousel';
+import { mapGetters } from 'vuex';
 import CarouselItem from './CarouselItem';
 
 export default {
   components: {
-    Carousel,
-    Slide,
     CarouselItem,
   },
   data() {
     return {
-      settings: {
-        itemsToShow: 3.9,
-        itemsToScroll: 1,
-        snapAlign: 'start',
-      },
+      scroll: 0,
     };
   },
   computed: {
-    ...mapState(['categories']),
+    ...mapGetters(['activeCategories']),
   },
 };
 </script>
@@ -36,23 +31,24 @@ export default {
 <style lang="scss" scoped>
 .carousel {
   grid-area: apps;
+  touch-action: pan-x;
   background: none;
   border: none;
-}
-
-:deep(.carousel__track) {
-  display: grid;
-  grid-template-rows: var(--row-size) var(--row-size);
-  grid-auto-flow: column;
-  grid-gap: var(--gutter);
-}
-
-:deep(.carousel__slide) {
-  width: var(--row-size) !important;
-}
-
-:deep(.carousel__viewport),
-:deep(.carousel__track) {
-  height: 100%;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  &__track {
+    display: grid;
+    grid-template-rows: var(--row-size) var(--row-size);
+    grid-auto-flow: column;
+    grid-gap: var(--gutter);
+  }
+  &__slide {
+    width: var(--row-size);
+  }
 }
 </style>

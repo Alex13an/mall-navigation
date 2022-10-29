@@ -1,8 +1,8 @@
 <template>
-  <div class="search">
+  <router-link class="search" :to="{ name: 'search' }">
     <span class="mif-search search__icon"></span>
     <div class="search__tooltip">{{ $t('search') }}</div>
-  </div>
+  </router-link>
 </template>
 
 <script>

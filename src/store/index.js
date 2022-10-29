@@ -1,12 +1,35 @@
 import { createStore } from 'vuex';
-import categories from '../configs/categories';
+import categories from '../config/categories';
+import stores from '../config/stores';
 
 export default createStore({
   state: {
-    categories,
+    searchCategory: '',
   },
-  getters: {},
-  mutations: {},
-  actions: {},
-  modules: {},
+  getters: {
+    activeCategories() {
+      const keys = Object.keys(categories);
+      return keys.reduce((arr, key) => {
+        arr.push({
+          id: key,
+          ...categories[key],
+        });
+        return arr;
+      }, []);
+    },
+
+    filteredStores: () => (filter, category) => {
+      let filteredStores = stores;
+      if (category) {
+        filteredStores = filteredStores.filter((store) => store.category === category);
+      }
+      if (filter) {
+        filteredStores = filteredStores.filter((store) => store.name.toLowerCase().includes(filter.toLowerCase()));
+      }
+      return filteredStores.map((store) => ({
+        ...categories[store.category],
+        ...store,
+      }));
+    },
+  },
 });

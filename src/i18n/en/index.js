@@ -1,5 +1,5 @@
 export default {
-  mainTitle: 'Your name here',
+  mainTitle: 'The Mall',
   hello: 'Hello ;)',
   mapNavigation: {
     plus: 'Increase map size',
@@ -24,4 +24,5 @@ export default {
     jewellery: 'Jewellery',
     books: 'Books',
   },
+  goBack: 'Go Back',
 };
