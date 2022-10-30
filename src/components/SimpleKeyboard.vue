@@ -79,5 +79,7 @@ export default {
 .simple-keyboard {
   color: black;
   max-height: calc(var(--row-size) * 2.2);
+  margin-bottom: var(--gutter);
+  grid-area: keyboard;
 }
 </style>

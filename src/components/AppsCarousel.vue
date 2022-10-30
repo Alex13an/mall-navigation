@@ -19,11 +19,47 @@ export default {
   },
   data() {
     return {
-      scroll: 0,
+      scrollX: 0,
+      isDown: false,
+      startX: 0,
     };
   },
   computed: {
     ...mapGetters(['activeCategories']),
+  },
+  methods: {
+    onMouseDown(e) {
+      this.isDown = true;
+      this.startX = e.pageX - this.$el.offsetLeft;
+      this.scrollX = this.$el.scrollLeft;
+    },
+    onMouseLeave() {
+      this.isDown = false;
+    },
+    onMouseUp() {
+      this.isDown = false;
+    },
+    onMouseMove(e) {
+      if (!this.isDown) {
+        return;
+      }
+      e.preventDefault();
+      const x = e.pageX - this.$el.offsetLeft;
+      const dist = x - this.startX;
+      this.$el.scrollLeft = this.scrollX - dist;
+    },
+  },
+  mounted() {
+    this.$el.addEventListener('mousedown', this.onMouseDown);
+    this.$el.addEventListener('mouseleave', this.onMouseLeave);
+    this.$el.addEventListener('mouseup', this.onMouseUp);
+    this.$el.addEventListener('mousemove', this.onMouseMove);
+  },
+  unmounted() {
+    this.$el.removeEventListener('mousedown', this.onMouseDown);
+    this.$el.removeEventListener('mouseleave', this.onMouseLeave);
+    this.$el.removeEventListener('mouseup', this.onMouseUp);
+    this.$el.removeEventListener('mousemove', this.onMouseMove);
   },
 };
 </script>

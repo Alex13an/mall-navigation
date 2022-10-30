@@ -25,4 +25,5 @@ export default {
     books: 'Книги',
   },
   goBack: 'Назад',
+  storeCounter: '{{count}} объектов',
 };

@@ -1,34 +1,45 @@
 <template>
   <div class="search-area" @click="onClick">
-    <router-link class="go-back" :to="{ name: 'home' }">
-      <span class="go-back__icon mif-arrow-left"></span>
-      <div class="go-back__tooltip">{{ $t('goBack') }}</div>
-    </router-link>
+    <GoBack />
     <div class="search">
       <div class="search__title">{{ $t('search') }}</div>
-      <input type="text" class="search__input" :value="searchText" @focus="onInputFocus" />
-      <SimpleKeyboard v-if="isInputFocused" @onChange="onChange" @onKeyPress="onKeyPress" :input="searchText" />
+      <div class="search__container">
+        <input type="text" class="search__input" :value="searchText" @focus="onInputFocus" />
+        <div class="search__counter">
+          {{ $t('storeCounter', { count: searchList.length }) }}
+        </div>
+      </div>
     </div>
-    <SearchList :searchText="searchText" :isKeyboardVisible="isInputFocused" />
   </div>
+  <SimpleKeyboard v-if="isInputFocused" @onChange="onChange" :input="searchText" />
+  <SearchList :searchList="searchList" :isKeyboardVisible="isInputFocused" />
 </template>
 
 <script>
 import SimpleKeyboard from '../components/SimpleKeyboard';
 import SearchList from '../components/SearchList';
+import GoBack from '../components/GoBack';
+import { mapState, mapMutations } from 'vuex';
 
 export default {
   components: {
     SimpleKeyboard,
     SearchList,
+    GoBack,
   },
   data() {
     return {
       searchText: '',
-      isInputFocused: false,
     };
   },
+  computed: {
+    ...mapState(['isInputFocused']),
+    searchList() {
+      return this.$store.getters.filteredStores(this.searchText, this.$route.params.category);
+    },
+  },
   methods: {
+    ...mapMutations(['SET_INPUT_FOCUSED']),
     onChange(input) {
       this.searchText = input;
     },
@@ -36,11 +47,14 @@ export default {
       this.searchText = input.target.value;
     },
     onInputFocus() {
-      this.isInputFocused = true;
+      this.SET_INPUT_FOCUSED(true);
     },
     onClick(e) {
+      if (!document.getElementsByClassName('search')[0]) {
+        return;
+      }
       if (!e.target || !document.getElementsByClassName('search')[0].contains(e.target)) {
-        this.isInputFocused = false;
+        this.SET_INPUT_FOCUSED(false);
       }
     },
   },
@@ -59,39 +73,28 @@ export default {
 }
 
 .search {
+  position: relative;
   &__title {
     font-size: calc(var(--gutter) * 1.5);
     line-height: var(--gutter);
   }
-  &__input {
+  &__container {
     margin-top: calc(var(--gutter) * 2);
     margin-bottom: var(--gutter);
-    width: calc(var(--row-size) * 8);
-    height: calc(var(--gutter) * 2);
-  }
-}
-
-.go-back {
-  color: white;
-  position: absolute;
-  left: 0;
-  top: 0;
-  &__icon {
     display: flex;
     align-items: center;
-    justify-content: center;
-    border: calc(var(--gutter) / 3.5) solid white;
-    border-radius: 50%;
-    width: calc(var(--gutter) * 3.2);
-    height: calc(var(--gutter) * 3.2);
-    &:before {
-      font-size: calc(var(--gutter) * 1.3);
-    }
   }
-  &__tooltip {
-    margin-top: calc(var(--gutter) / 2);
-    text-align: center;
-    font-size: calc(var(--gutter) / 1.6);
+  &__input {
+    width: calc(var(--row-size) * 8);
+    height: calc(var(--gutter) * 2);
+    background: white;
+    color: black;
+    border: none;
+    font-size: var(--gutter);
+    padding-left: calc(var(--gutter) / 2);
+  }
+  &__counter {
+    margin-left: calc(var(--gutter) * 3);
   }
 }
 </style>

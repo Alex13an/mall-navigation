@@ -25,4 +25,5 @@ export default {
     books: 'Books',
   },
   goBack: 'Go Back',
+  storeCounter: '{{count}} objects',
 };

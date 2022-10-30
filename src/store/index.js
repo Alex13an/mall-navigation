@@ -5,6 +5,12 @@ import stores from '../config/stores';
 export default createStore({
   state: {
     searchCategory: '',
+    isInputFocused: false,
+  },
+  mutations: {
+    SET_INPUT_FOCUSED(state, focus) {
+      state.isInputFocused = focus;
+    },
   },
   getters: {
     activeCategories() {

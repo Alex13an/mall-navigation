@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import HomePage from '../pages/HomePage';
 import SearchPage from '../pages/SearchPage';
+import StorePage from '../pages/StorePage';
 
 const routes = [
   {
@@ -12,6 +13,11 @@ const routes = [
     path: '/search/:category?',
     name: 'search',
     component: SearchPage,
+  },
+  {
+    path: '/store/:id',
+    name: 'store',
+    component: StorePage,
   },
 ];
 

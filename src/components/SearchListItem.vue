@@ -1,9 +1,9 @@
 <template>
-  <div class="search-item" :style="styleObject">
+  <router-link class="search-item" :style="styleObject" :to="{ name: 'store', params: { id: store.id } }">
     <div class="search-item__title">
       {{ store.name }}
     </div>
-  </div>
+  </router-link>
 </template>
 
 <script>
@@ -24,6 +24,7 @@ export default {
 
 <style lang="scss" scoped>
 .search-item {
+  color: white;
   width: calc(var(--row-size) * 2);
   padding: var(--gutter);
   position: relative;
