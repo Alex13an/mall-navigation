@@ -30,6 +30,11 @@ export default {
   justify-content: left;
   overflow-y: hidden;
   overflow-x: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
   &_short {
     grid-template-rows: repeat(auto-fill, var(--row-size));
   }

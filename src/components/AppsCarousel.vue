@@ -1,6 +1,6 @@
 <template>
   <div class="carousel">
-    <div class="carousel__track">
+    <div class="carousel__track" :class="isLayoutAlternated ? 'carousel__track_alter' : ''">
       <div class="carousel__slide" v-for="category in activeCategories" :key="category.id">
         <CarouselItem :category="category" />
       </div>
@@ -10,7 +10,7 @@
 
 <script>
 import 'vue3-carousel/dist/carousel.css';
-import { mapGetters } from 'vuex';
+import { mapGetters, mapState } from 'vuex';
 import CarouselItem from './CarouselItem';
 
 export default {
@@ -25,6 +25,7 @@ export default {
     };
   },
   computed: {
+    ...mapState(['isLayoutAlternated']),
     ...mapGetters(['activeCategories']),
   },
   methods: {
@@ -82,6 +83,9 @@ export default {
     grid-template-rows: var(--row-size) var(--row-size);
     grid-auto-flow: column;
     grid-gap: var(--gutter);
+    &_alter {
+      grid-template-rows: var(--row-size) var(--row-size) var(--row-size);
+    }
   }
   &__slide {
     width: var(--row-size);

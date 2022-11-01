@@ -1,5 +1,5 @@
 <template>
-  <div class="grid-container">
+  <div class="grid-container" :class="isLayoutAlternated ? 'grid-container_alternate' : ''">
     <MainHeader />
     <MainAd />
     <MainMap />
@@ -16,6 +16,7 @@ import MapNavigation from '../components/MapNavigation';
 import MainSearch from '../components/MainSearch';
 import AppsCarousel from '../components/AppsCarousel';
 import MainMap from '../components/MainMap';
+import { mapState } from 'vuex';
 
 export default {
   components: {
@@ -25,6 +26,9 @@ export default {
     AppsCarousel,
     MainSearch,
     MainMap,
+  },
+  computed: {
+    ...mapState(['isLayoutAlternated']),
   },
 };
 </script>
@@ -46,5 +50,13 @@ export default {
     'nav nav nav search ad ad ad ad ad ad ad ad'
     'apps apps apps apps ad ad ad ad ad ad ad ad'
     'apps apps apps apps ad ad ad ad ad ad ad ad';
+  &_alternate {
+    grid-template-areas:
+      'header header header header header header header header header header header header'
+      'ad ad ad ad ad map map map map map map map'
+      'apps apps apps apps apps map map map map map map map'
+      'apps apps apps apps apps map map map map map map map'
+      'apps apps apps apps apps nav nav nav nav nav nav search';
+  }
 }
 </style>

@@ -80,7 +80,6 @@ export default {
   }
   &__container {
     margin-top: calc(var(--gutter) * 2);
-    margin-bottom: var(--gutter);
     display: flex;
     align-items: center;
   }

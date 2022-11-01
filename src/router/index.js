@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import HomePage from '../pages/HomePage';
 import SearchPage from '../pages/SearchPage';
 import StorePage from '../pages/StorePage';
+import MallMap from '../map/MallMap';
 
 const routes = [
   {
@@ -18,6 +19,11 @@ const routes = [
     path: '/store/:id',
     name: 'store',
     component: StorePage,
+  },
+  {
+    path: '/map',
+    name: 'map',
+    component: MallMap,
   },
 ];
 

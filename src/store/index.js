@@ -6,6 +6,8 @@ export default createStore({
   state: {
     searchCategory: '',
     isInputFocused: false,
+    isLayoutAlternated: false,
+    isAdVideo: false,
   },
   mutations: {
     SET_INPUT_FOCUSED(state, focus) {

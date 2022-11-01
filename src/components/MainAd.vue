@@ -1,6 +1,6 @@
 <template>
   <div class="ad">
-    <video v-if="isVideo" class="ad__video" autoplay muted>
+    <video v-if="isAdVideo" class="ad__video" autoplay muted>
       <source src="../assets/videos/RickRoll.mp4" type="video/mp4" />
     </video>
     <img v-else class="ad__img" src="../assets/images/mockAd.jpg" alt="your ad here" />
@@ -8,11 +8,11 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
 export default {
-  data() {
-    return {
-      isVideo: false,
-    };
+  computed: {
+    ...mapState(['isAdVideo']),
   },
 };
 </script>
